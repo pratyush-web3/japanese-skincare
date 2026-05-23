@@ -3,12 +3,11 @@ import "./globals.css";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import JapaneseBackdrop from "@/components/decorative/JapaneseBackdrop";
 import { brand } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: {
-    default: `${brand.name} — 日本の自然素材スキンケア`,
+    default: `${brand.name} - 京都発のプレミアムスキンケア`,
     template: `%s | ${brand.name}`,
   },
   description: brand.description,
@@ -21,13 +20,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className="bg-background text-text antialiased relative">
-        <JapaneseBackdrop />
-        <div className="relative z-10">
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </div>
+      <body className="bg-background text-text antialiased min-h-screen">
+        <Navbar />
+        <main className="relative z-10">{children}</main>
+        <Footer />
       </body>
     </html>
   );

@@ -3,11 +3,10 @@ import PageHero from "@/components/ui/PageHero";
 import FadeIn from "@/components/ui/FadeIn";
 import { site } from "@/lib/site";
 import { images } from "@/lib/data";
-import ZenDivider from "@/components/decorative/ZenDivider";
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー",
-  description: "Yūbi（優美）では、お客様の個人情報を適切に保護し、安心してご利用いただけるよう努めています。",
+  description: "Yūbi では、お客様の個人情報を適切に保護し、安心してご利用いただけるよう努めています。",
 };
 
 const sections = [
@@ -62,10 +61,10 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       <PageHero
-        title="プライバシーポリシー"
-        subtitle="お客様の個人情報は、適切に管理し安心してご利用いただけるよう努めます。"
+        title="Privacy Policy"
+        subtitle="How we collect, use, and protect your personal information."
         image={images.kyoto}
-        imageAlt="京都の静けさを感じる庭園"
+        imageAlt="信頼と安心感を表す京都の静かなビジュアル"
       />
 
       <section className="section-padding pt-12 bg-background">
@@ -73,9 +72,9 @@ export default function PrivacyPolicyPage() {
           <FadeIn>
             <div className="flex items-center gap-4 mb-8">
               <span className="eyebrow">PRIVACY</span>
-              <ZenDivider className="flex-1" />
+              <span className="h-px flex-1 bg-linear-to-r from-primary/60 to-transparent" />
             </div>
-            <p className="text-text-muted font-light text-sm mb-12">
+            <p className="text-text-muted font-medium text-sm mb-12">
               最終更新日：{site.legal.lastUpdated}
             </p>
           </FadeIn>
@@ -83,14 +82,14 @@ export default function PrivacyPolicyPage() {
           <div className="space-y-14">
             {sections.map((section, index) => (
               <FadeIn key={section.title} delay={index * 0.05}>
-                <article className="border-l-2 border-accent-aka/20 pl-6">
+                <article className="border-l-2 border-primary/25 pl-6">
                   <h2 className="text-xl font-serif font-medium mb-5 text-text flex items-center gap-3">
-                    <span className="text-accent-aka/60 font-serif text-sm">
+                    <span className="text-primary/65 font-serif text-sm">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     {section.title}
                   </h2>
-                  <p className="text-text-muted leading-loose font-light text-sm text-justify">
+                  <p className="text-text-muted leading-relaxed font-medium text-sm text-justify">
                     {section.content}
                   </p>
                 </article>

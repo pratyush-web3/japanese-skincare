@@ -189,7 +189,7 @@ export function FallingPetals({ count = 5 }: { count?: number }) {
       {petals.map((petal) => (
         <div
           key={petal.id}
-          className="absolute text-accent-sakura animate-float"
+          className="absolute text-accent animate-float"
           style={{
             left: `${petal.left}%`,
             top: '-10px',
@@ -215,20 +215,20 @@ export default function JapaneseBackdrop() {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden>
       {/* Top right seigaiha pattern */}
-      <div className="absolute -top-24 -right-24 w-96 h-96 text-accent-sakura/6">
+      <div className="absolute -top-24 -right-24 w-96 h-96 text-accent/6">
         <SeigaihaPattern className="w-full h-full" />
       </div>
       
       {/* Bottom left asanoha pattern */}
-      <div className="absolute -bottom-32 -left-32 w-80 h-80 text-accent-warm/4">
+      <div className="absolute -bottom-32 -left-32 w-80 h-80 text-primary/4">
         <AsanohaPattern className="w-full h-full" />
       </div>
 
       {/* Subtle horizontal divider */}
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border/50 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-linear-to-r from-transparent via-border/50 to-transparent" />
       
       {/* Floating sakura petal */}
-      <div className="absolute top-1/4 left-1/4 w-2 h-2 text-accent-sakura/10 animate-float">
+      <div className="absolute top-1/4 left-1/4 w-2 h-2 text-accent/10 animate-float">
         <SakuraAccent className="w-full h-full" />
       </div>
     </div>

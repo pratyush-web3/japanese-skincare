@@ -2,213 +2,195 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import PremiumImage from "@/components/ui/PremiumImage";
-import ZenDivider from "@/components/decorative/ZenDivider";
-import { SeigaihaPattern, SakuraAccent } from "@/components/decorative/JapaneseBackdrop";
-import { images } from "@/lib/data";
+import { brandStats, images } from "@/lib/data";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#f8f4ed]">
-      {/* Premium gradient background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(184,149,106,0.12)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_left,rgba(212,165,165,0.08)_0%,transparent_50%)]" />
-      
-      {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 pattern-asanoha opacity-50" />
+    <section className="relative overflow-hidden pt-6 md:pt-8 lg:pt-10 pb-10 md:pb-12">
+      <div className="absolute inset-0 pattern-asanoha opacity-60" />
+      <div className="absolute -top-24 right-[6%] h-80 w-80 rounded-full bg-accent/18 blur-3xl" />
+      <div className="absolute -bottom-32 left-[3%] h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
 
-      {/* Main content */}
       <div className="hero-shell relative z-10">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[92svh] py-16 md:py-24 lg:py-32">
-          
-          {/* Left content panel */}
+        <div className="grid lg:grid-cols-12 gap-10 xl:gap-14 items-center min-h-[82svh] pb-12 md:pb-16">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-5 flex flex-col justify-center order-2 lg:order-1"
           >
-            {/* Japanese subtitle */}
-            <div className="flex items-center gap-3 mb-4">
-              <span className="h-px w-8 bg-accent-aka/40" />
-              <p className="eyebrow-jp">京都の静けさを、肌へ</p>
+            <div className="inline-flex items-center gap-2 w-fit rounded-full border border-border bg-white/84 px-4 py-2 mb-6 shadow-[0_10px_24px_rgba(15,23,42,0.07)]">
+              <Sparkles size={13} className="text-accent" strokeWidth={1.8} />
+              <p className="text-[11px] font-semibold tracking-[0.18em] text-text-light uppercase">
+                Kyoto / modern ritual skincare
+              </p>
             </div>
 
-            {/* English category */}
-            <p className="eyebrow mb-6 pl-11">KYOTO RITUAL SKINCARE</p>
+            <p className="eyebrow-jp mb-5">京都発のプレミアムスキンケア</p>
 
-            {/* Decorative divider */}
-            <ZenDivider className="mb-8 ml-11" />
-
-            {/* Main heading */}
-            <h1 className="heading-display text-[2.5rem] sm:text-[3.2rem] md:text-[3.8rem] lg:text-[4.2rem] leading-[1.08] tracking-[0.02em] max-w-[8ch] text-text">
-              素肌に、
+            <h1 className="heading-display text-[3rem] sm:text-[3.9rem] md:text-[4.6rem] lg:text-[5.35rem] max-w-[10ch] text-text">
+              肌の印象を、
               <br />
-              <span className="font-serif font-light">静かなご褒美を。</span>
+              静かに格上げする。
             </h1>
 
-            {/* Description */}
-            <p className="mt-8 text-text-muted leading-loose font-light text-[15px] md:text-[16px] max-w-md pl-11">
-              日本の自然素材と、京都の美意識から生まれたスキンケア。
-              <br />
-              肌に触れるたび、余白のある上質さが静かに広がります。
+            <p className="mt-7 text-text-muted leading-ja font-medium text-[15px] md:text-[17px] max-w-[60ch] tracking-ja">
+              椿、柚子、米ぬか、抹茶。
+              素材の個性をそのまま見せるのではなく、毎日続けられる軽さと信頼感に整えた、静かなプレミアムケアです。
             </p>
 
-            {/* CTA buttons */}
-            <div className="mt-10 flex flex-wrap gap-4 pl-11">
-              <Link 
-                href="/products" 
-                className="btn-primary group shadow-[0_8px_24px_rgba(139,58,58,0.2)]"
+            <p className="mt-5 text-text-muted/92 leading-ja text-[14px] md:text-[15px] max-w-[58ch]">
+              朝はベタつかず、夜は重すぎない。肌の調子を上げたいけれど、派手な手応えはいらない。そんな日常の使い方に合わせて、処方と使い心地のバランスを細かく整えています。
+            </p>
+
+            <div className="mt-6 flex flex-wrap items-center gap-3 text-[11px] tracking-[0.16em] text-text-light font-semibold uppercase">
+              <span className="rounded-full border border-border bg-white/75 px-3 py-2">Sensitive-skin conscious</span>
+              <span className="rounded-full border border-border bg-white/75 px-3 py-2">Patch-test friendly design</span>
+              <span className="rounded-full border border-border bg-white/75 px-3 py-2">Ingredient transparency</span>
+              <span className="rounded-full border border-border bg-white/75 px-3 py-2">Made in Japan</span>
+            </div>
+
+            <div className="mt-10 flex flex-wrap gap-3.5">
+              <Link
+                href="/products"
+                className="btn-primary group"
               >
-                商品を見る
+                製品を見る
                 <ArrowRight size={15} strokeWidth={1.5} className="group-hover:translate-x-0.5 transition-transform" />
               </Link>
-              <Link href="/about" className="btn-secondary">
+
+              <Link href="/about" className="btn-secondary group">
                 ブランドについて
+                <ArrowRight size={15} strokeWidth={1.5} className="text-primary transition-transform group-hover:translate-x-0.5" />
               </Link>
             </div>
 
-            {/* Trust indicators */}
-            <ul className="mt-12 pt-8 border-t border-border/60 grid grid-cols-3 gap-6 pl-11">
+            <div className="mt-9 grid gap-3 sm:grid-cols-3 max-w-3xl">
               {[
-                { num: "01", label: "創業", value: "2018" },
-                { num: "02", label: "製造", value: "京都" },
-                { num: "03", label: "処方", value: "天然由来" },
+                { label: "使用感", value: "軽く、静かに、あと残りしない" },
+                { label: "設計", value: "日常のルーティンに合わせて最適化" },
+                { label: "品質", value: "国内生産と丁寧な確認体制" },
               ].map((item) => (
-                <li key={item.num}>
-                  <span className="text-[10px] tracking-[0.2em] text-accent-aka/70 font-serif">
-                    {item.num}
-                  </span>
-                  <p className="text-[9px] text-text-muted mt-1 tracking-widest uppercase">
-                    {item.label}
-                  </p>
-                  <p className="text-sm mt-1 font-serif text-text">{item.value}</p>
+                <div key={item.label} className="rounded-2xl border border-border bg-white/78 px-4 py-4 shadow-[0_10px_22px_rgba(15,23,42,0.04)]">
+                  <p className="text-[10px] tracking-[0.18em] text-text-light font-semibold uppercase">{item.label}</p>
+                  <p className="mt-2 text-sm text-text leading-relaxed">{item.value}</p>
+                </div>
+              ))}
+            </div>
+
+            <ul className="mt-10 pt-7 border-t border-border/80 grid sm:grid-cols-2 xl:grid-cols-4 gap-3 max-w-3xl">
+              {brandStats.map((item) => (
+                <li key={item.label} className="rounded-2xl border border-border bg-white/75 px-4 py-4 shadow-[0_10px_22px_rgba(15,23,42,0.04)]">
+                  <p className="font-serif text-2xl md:text-[2rem] text-text leading-none">{item.value}</p>
+                  <p className="mt-2 text-[10px] tracking-[0.18em] text-text-light font-semibold uppercase">{item.label}</p>
                 </li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Right image composition */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-7 relative order-1 lg:order-2"
           >
-            <div className="grid gap-5 lg:gap-6 items-end">
-              
-              {/* Main hero image */}
-              <div className="frame-shoji lg:col-span-8 min-h-[400px] md:min-h-[500px] relative group">
+            <div className="grid gap-4 lg:gap-5 items-end">
+              <div className="frame-shoji min-h-95 md:min-h-125 relative group shadow-[0_24px_80px_rgba(7,17,29,0.22)]">
                 <PremiumImage
                   src={images.hero}
-                  alt="京都の静けさを感じるスキンケアの静物"
+                  alt="自然光の中に置かれたプレミアムスキンケアの構成"
                   fill
                   priority
-                  sizes="(max-width: 1024px) 100vw, 52vw"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-accent-sumi/20 via-transparent to-transparent" />
-                
-                {/* Premium badge */}
-                <div className="absolute left-6 top-6 z-10 flex items-center gap-2 backdrop-blur-md bg-accent-sumi/40 px-4 py-2 border border-white/15">
-                  <SakuraAccent className="w-4 h-4 text-accent-sakura" />
-                  <span className="text-[10px] tracking-[0.3em] text-[#f5f0e8]">KYOTO EDITION</span>
+
+                <div className="absolute inset-0 bg-linear-to-br from-surface-dark/35 via-transparent to-accent/12" />
+
+                <div className="absolute left-5 bottom-5 z-10 rounded-3xl bg-white/88 backdrop-blur-md border border-white/60 px-4 py-3 shadow-[0_18px_40px_rgba(15,23,42,0.18)]">
+                  <p className="text-[10px] tracking-[0.18em] text-primary/70 font-semibold uppercase">
+                    Skin-safety focused
+                  </p>
+                  <p className="mt-1 text-sm text-text leading-relaxed max-w-56">
+                    毎日使う前提で、刺激感・使い心地・見た目のすべてを整えました。
+                  </p>
                 </div>
 
-                {/* Caption card */}
-                <div className="absolute right-6 bottom-6 z-10 max-w-64 backdrop-blur-md bg-surface/90 px-5 py-4 border border-border/50 shadow-lg">
-                  <p className="text-[9px] tracking-[0.3em] text-accent-aka/80 mb-2 uppercase">
-                    Signature Collection
+                <div className="absolute left-5 top-5 z-10 flex items-center gap-2 rounded-full backdrop-blur-md bg-[rgba(9,19,38,0.55)] px-3.5 py-2 border border-white/16">
+                  <CheckCircle2 className="w-4 h-4 text-accent" strokeWidth={1.7} />
+                  <span className="text-[10px] tracking-[0.18em] text-[#ecf5ff] uppercase">Sensitive-skin conscious</span>
+                </div>
+
+                <div className="absolute right-5 bottom-5 z-10 max-w-72 rounded-3xl backdrop-blur-md bg-white/88 px-5 py-4 border border-white/70 shadow-[0_18px_40px_rgba(15,23,42,0.18)]">
+                  <p className="text-[10px] tracking-[0.18em] text-primary/80 mb-2 font-semibold uppercase">
+                    Signature line
                   </p>
-                  <p className="font-serif text-sm leading-relaxed text-text">
-                    上質な光と肌なじみを両立した、余白のある一枚。
+                  <p className="font-medium text-sm leading-relaxed text-text">
+                    すっとなじみ、後肌に重さを残さない。日常に置いても違和感のない静かな質感を目指しました。
                   </p>
                 </div>
               </div>
 
-              {/* Secondary images */}
-              <div className="grid gap-5 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1">
-                <div className="frame-shoji min-h-[180px] relative group overflow-hidden">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="frame-shoji min-h-45 relative group overflow-hidden">
                   <PremiumImage
                     src={images.spa}
-                    alt="静かな和のスパ空間"
+                    alt="静かなスパ空間で整えるスキンケアのひととき"
                     fill
-                    sizes="(max-width: 1024px) 50vw, 20vw"
+                    sizes="(max-width: 1024px) 50vw, 24vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-accent-sumi/50 via-transparent to-transparent" />
-                  <div className="absolute left-4 bottom-4 z-10">
-                    <p className="text-[10px] tracking-[0.25em] text-[#f5f0e8]/80 uppercase">
-                      Spa Ritual
+                  <div className="absolute inset-0 bg-linear-to-t from-surface-dark/60 via-transparent to-transparent" />
+                  <div className="absolute left-4 bottom-4 z-10 text-[#eef6ff]">
+                    <p className="text-[10px] tracking-[0.16em] opacity-85 font-semibold uppercase">
+                      Spa finish
                     </p>
-                    <p className="font-serif text-sm text-[#f5f0e8] mt-0.5">
-                      静寂の時間
+                    <p className="font-serif text-sm mt-0.5">
+                      しっとり、でも軽い
                     </p>
                   </div>
                 </div>
 
-                <div className="frame-shoji min-h-[180px] relative group overflow-hidden">
+                <div className="frame-shoji min-h-45 relative group overflow-hidden">
                   <PremiumImage
                     src={images.ritual}
-                    alt="整えられたスキンケアのルーティン"
+                    alt="丁寧に並べたスキンケアルーティン"
                     fill
-                    sizes="(max-width: 1024px) 50vw, 20vw"
+                    sizes="(max-width: 1024px) 50vw, 24vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-accent-sumi/45 via-transparent to-transparent" />
-                  <div className="absolute left-4 bottom-4 z-10">
-                    <p className="text-[9px] tracking-[0.3em] text-[#f5f0e8]/70 uppercase">
-                      Morning Ritual
+                  <div className="absolute inset-0 bg-linear-to-t from-surface-dark/60 via-transparent to-transparent" />
+                  <div className="absolute left-4 bottom-4 z-10 text-[#eef6ff]">
+                    <p className="text-[10px] tracking-[0.16em] opacity-75 font-semibold uppercase">
+                      Routine design
                     </p>
-                    <p className="font-serif text-sm text-[#f5f0e8] mt-0.5">
-                      毎日の儀式
+                    <p className="font-serif text-sm mt-0.5">
+                      静かに、きちんと
                     </p>
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Vertical decorative text */}
-            <p
-              className="hidden xl:block absolute -left-6 top-1/2 -translate-y-1/2 vertical-jp text-[11px] tracking-[0.4em] text-text-muted/60 font-serif z-20"
-              aria-hidden
-            >
-              日本の自然素材
-            </p>
-
-            {/* Decorative seigaiha pattern */}
-            <div className="absolute -bottom-8 -right-8 w-32 h-20 text-accent-warm/15 hidden md:block">
-              <SeigaihaPattern className="w-full h-full" />
             </div>
           </motion.div>
         </div>
-      </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3 z-10"
-      >
-        <span className="vertical-jp text-[10px] tracking-[0.3em] text-text-muted/60 h-10 font-light">
-          スクロール
-        </span>
-        <motion.div
-          animate={{ scaleY: [1, 1.5, 1] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="w-px h-10 bg-gradient-to-b from-accent-aka/60 to-transparent origin-top"
-        />
-      </motion.div>
-
-      {/* Floating decorative elements */}
-      <div className="absolute top-20 right-10 w-2 h-2 text-accent-sakura/20 animate-float hidden lg:block">
-        <SakuraAccent className="w-full h-full" />
-      </div>
-      <div className="absolute bottom-40 left-20 w-3 h-3 text-accent-sakura/15 animate-float hidden lg:block" style={{ animationDelay: '1s' }}>
-        <SakuraAccent className="w-full h-full" />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 pb-10 md:pb-16">
+          {[
+            "京都で企画・監修",
+            "国内配送に対応",
+            "必要なものだけを丁寧に",
+            "¥10,000以上で送料無料",
+          ].map((item) => (
+            <div
+              key={item}
+              className="rounded-2xl border border-border bg-white/76 px-4 py-3 text-[11px] md:text-xs tracking-widest text-text-light font-semibold text-center shadow-[0_10px_22px_rgba(15,23,42,0.04)]"
+            >
+              {item}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

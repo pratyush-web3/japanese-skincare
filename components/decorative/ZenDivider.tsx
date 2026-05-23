@@ -12,7 +12,7 @@ export default function ZenDivider({
   if (variant === "vertical") {
     return (
       <div
-        className={`w-px h-16 bg-gradient-to-b from-transparent via-accent-aka/50 to-transparent ${className}`}
+        className={`w-px h-16 bg-linear-to-b from-transparent via-accent/50 to-transparent ${className}`}
         aria-hidden
       />
     );
@@ -22,17 +22,17 @@ export default function ZenDivider({
     return (
       <div className={`flex flex-col items-center gap-2 ${className}`} aria-hidden>
         <div className="flex items-center gap-3">
-          <span className="w-1 h-1 rounded-full bg-accent-aka/60" />
-          <span className="flex-1 max-w-[3rem] h-px bg-gradient-to-r from-accent-aka/40 to-transparent" />
+          <span className="w-1 h-1 rounded-full bg-accent/60" />
+          <span className="flex-1 max-w-[3rem] h-px bg-linear-to-r from-accent/40 to-transparent" />
         </div>
         <div className="flex items-center gap-3">
-          <span className="flex-1 max-w-[3rem] h-px bg-gradient-to-l from-accent-aka/40 to-transparent" />
-          <SakuraAccent className="w-2 h-2 text-accent-sakura/60" />
-          <span className="flex-1 max-w-[3rem] h-px bg-gradient-to-r from-accent-aka/40 to-transparent" />
+          <span className="flex-1 max-w-[3rem] h-px bg-linear-to-l from-accent/40 to-transparent" />
+          <SakuraAccent className="w-2 h-2 text-accent/60" />
+          <span className="flex-1 max-w-[3rem] h-px bg-linear-to-r from-accent/40 to-transparent" />
         </div>
         <div className="flex items-center gap-3">
-          <span className="flex-1 max-w-[3rem] h-px bg-gradient-to-r from-transparent to-accent-aka/40" />
-          <span className="w-1 h-1 rounded-full bg-accent-aka/60" />
+          <span className="flex-1 max-w-[3rem] h-px bg-linear-to-r from-transparent to-accent/40" />
+          <span className="w-1 h-1 rounded-full bg-accent/60" />
         </div>
       </div>
     );
@@ -40,11 +40,11 @@ export default function ZenDivider({
 
   return (
     <div className={`flex items-center gap-3 ${className}`} aria-hidden>
-      <span className="w-1.5 h-1.5 rounded-full bg-accent-aka/70" />
-      <span className="flex-1 max-w-[5rem] h-px bg-gradient-to-r from-accent-aka/50 to-transparent" />
-      <SakuraAccent className="w-2.5 h-2.5 text-accent-sakura/50 shrink-0" />
-      <span className="flex-1 max-w-[5rem] h-px bg-gradient-to-l from-accent-aka/50 to-transparent" />
-      <span className="w-1.5 h-1.5 rounded-full bg-accent-aka/70" />
+      <span className="w-1.5 h-1.5 rounded-full bg-accent/70" />
+      <span className="flex-1 max-w-[5rem] h-px bg-linear-to-r from-accent/50 to-transparent" />
+      <SakuraAccent className="w-2.5 h-2.5 text-accent/50 shrink-0" />
+      <span className="flex-1 max-w-[5rem] h-px bg-linear-to-l from-accent/50 to-transparent" />
+      <span className="w-1.5 h-1.5 rounded-full bg-accent/70" />
     </div>
   );
 }

@@ -5,6 +5,8 @@ import Ingredients from "@/components/Ingredients";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import BrandStory from "@/components/BrandStory";
+import Services from "@/components/Services";
+import FinalCTA from "@/components/FinalCTA";
 
 export default function Home() {
   return (
@@ -14,8 +16,10 @@ export default function Home() {
       <Products />
       <Ingredients />
       <BrandStory />
+      <Services />
       <Testimonials />
       <FAQ />
+      <FinalCTA />
     </>
   );
 }

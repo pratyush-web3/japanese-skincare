@@ -11,11 +11,23 @@ export default function Products() {
     <section className="section-padding bg-surface border-b border-border">
       <div className="section-container">
         <SectionHeading
-          eyebrow="COLLECTION"
-          eyebrowJp="商品"
-          title="人気のスキンケア"
-          description="椿、桜、抹茶——日本の恵みを、毎日のルーティンに。"
+          eyebrow="製品紹介"
+          eyebrowJp="定番ライン"
+          title={"静かに効く、\n毎日のための6製品"}
+          description="保湿、洗浄、整肌。必要な役割をきちんと分け、無理なく続けやすい構成に整えました。"
         />
+
+        <div className="mb-8 grid gap-3 sm:grid-cols-3">
+          {[
+            "朝と夜で使い分けやすい",
+            "敏感な時期でも選びやすい設計",
+            "単品でも組み合わせても使いやすい",
+          ].map((item) => (
+            <div key={item} className="rounded-xl border border-border bg-white/80 px-4 py-3 text-center text-[11px] tracking-[0.16em] text-text-light font-semibold uppercase">
+              {item}
+            </div>
+          ))}
+        </div>
 
         <div className="grid md:grid-cols-3 gap-5 lg:gap-6">
           {featured.map((product, index) => (
@@ -26,14 +38,15 @@ export default function Products() {
               description={product.description}
               price={product.price}
               image={product.image}
+              href={`/products/${product.id}`}
               index={index}
             />
           ))}
         </div>
 
-        <div className="mt-14 flex justify-center">
+        <div className="mt-12 md:mt-14 flex justify-center">
           <Link href="/products" className="btn-secondary">
-            すべての商品を見る
+            全製品を見る
             <ArrowRight size={15} strokeWidth={1.5} />
           </Link>
         </div>

@@ -15,22 +15,22 @@ type AnimatedLinkProps = {
 
 const variantStyles = {
   nav: {
-    base: "text-xs font-light tracking-[0.15em] relative py-1",
-    active: "text-accent-aka",
-    idle: "text-text hover:text-accent-aka",
-    line: "bg-accent-aka",
+    base: "text-[11px] font-semibold tracking-[0.16em] relative py-1 uppercase",
+    active: "text-primary",
+    idle: "text-text-muted hover:text-primary",
+    line: "bg-primary",
   },
   "footer-light": {
-    base: "text-sm font-light tracking-wide relative inline-block py-0.5",
+    base: "text-sm font-medium tracking-wide relative inline-block py-0.5",
     active: "text-text",
-    idle: "text-text-muted hover:text-accent-aka",
-    line: "bg-accent-warm",
+    idle: "text-text-muted hover:text-primary",
+    line: "bg-primary",
   },
   "footer-dark": {
-    base: "text-sm font-light tracking-wide relative inline-block py-0.5",
-    active: "text-[#f5f0e8]",
-    idle: "text-[#f5f0e8]/65 hover:text-[#f5f0e8]",
-    line: "bg-accent-warm",
+    base: "text-sm font-medium tracking-wide relative inline-block py-0.5",
+    active: "text-[#ecf5ff]",
+    idle: "text-[#ecf5ff]/70 hover:text-[#ecf5ff]",
+    line: "bg-accent",
   },
 };
 

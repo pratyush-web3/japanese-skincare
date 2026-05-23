@@ -1,5 +1,4 @@
 import FadeIn from "./FadeIn";
-import ZenDivider from "@/components/decorative/ZenDivider";
 
 type SectionHeadingProps = {
   eyebrow?: string;
@@ -25,30 +24,36 @@ export default function SectionHeading({
 
   return (
     <FadeIn
-      className={`mb-14 md:mb-18 max-w-2xl flex flex-col ${alignClass} ${className}`}
+      className={`mb-12 md:mb-14 max-w-4xl flex flex-col ${alignClass} ${className}`}
     >
       <div
-        className={`flex items-center gap-4 mb-5 ${align === "center" ? "justify-center" : ""}`}
+        className={`flex items-center gap-2.5 mb-4 ${align === "center" ? "justify-center" : ""}`}
       >
         {eyebrow && (
-          <span className={`eyebrow ${dark ? "!text-accent-warm" : ""}`}>{eyebrow}</span>
+          <span className={`eyebrow ${dark ? "text-accent-soft!" : ""}`}>{eyebrow}</span>
         )}
         {eyebrowJp && (
-          <span className={`eyebrow-jp ${dark ? "!text-white/50" : ""}`}>{eyebrowJp}</span>
+          <span className={`eyebrow-jp ${dark ? "text-white/55!" : ""}`}>{eyebrowJp}</span>
         )}
       </div>
-      <ZenDivider className={align === "center" ? "justify-center" : ""} />
+
+      <span
+        className={`h-px w-20 bg-linear-to-r from-primary/60 via-accent/55 to-transparent ${
+          align === "center" ? "mx-auto" : ""
+        }`}
+      />
+
       <h2
-        className={`heading-section text-3xl md:text-[2.5rem] mt-6 ${
-          dark ? "text-[#f5f0e8]" : "text-text"
+        className={`heading-section text-3xl md:text-[2.8rem] mt-6 ${
+          dark ? "text-[#edf4ff]" : "text-text"
         }`}
       >
         {title}
       </h2>
       {description && (
         <p
-          className={`mt-5 leading-[2] font-light text-[15px] md:text-base max-w-lg ${
-            dark ? "text-white/65" : "text-text-muted"
+          className={`mt-4 leading-relaxed font-medium text-[15px] md:text-base max-w-3xl ${
+            dark ? "text-white/72" : "text-text-muted"
           }`}
         >
           {description}

@@ -3,11 +3,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { brand, navLinks } from "@/lib/data";
 import AnimatedLink from "@/components/ui/AnimatedLink";
-import { SeigaihaPattern } from "@/components/decorative/JapaneseBackdrop";
 
 const menuVariants = {
   hidden: { opacity: 0 },
@@ -39,13 +38,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close mobile menu when route changes
-  useEffect(() => {
-    if (pathname) {
-      setOpen(false);
-    }
-  }, [pathname]);
-
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -56,128 +48,134 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed z-50 left-0 right-0 transition-all duration-700 border-b ${
-          scrolled || open
-            ? "top-0 bg-surface/97 backdrop-blur-xl border-border shadow-[0_2px_24px_rgba(42,40,38,0.06)]"
-            : "top-0 bg-transparent border-transparent"
+        className={`sticky top-0 z-50 transition-all duration-500 ${
+          scrolled || open ? "py-2" : "py-2.5"
         }`}
       >
-        <div className="section-container flex items-center justify-between h-18 md:h-20">
-          {/* Logo */}
-          <Link 
-            href="/" 
-            className="group flex items-center gap-3 shrink-0 py-2"
+        <div className="section-container">
+          <div
+            className={`rounded-[1.8rem] border transition-all duration-500 overflow-hidden backdrop-blur-2xl ${
+              scrolled || open
+                ? "bg-[color-mix(in_srgb,var(--color-surface)_78%,transparent)] border-border/80 shadow-[0_24px_56px_rgba(7,17,29,0.16)]"
+                : "bg-[color-mix(in_srgb,var(--color-surface)_70%,transparent)] border-border/55 shadow-[0_14px_34px_rgba(7,17,29,0.08)]"
+            }`}
           >
-            {/* Seal stamp logo */}
-            <span className="flex items-center justify-center w-9 h-9 border border-accent-aka/70 text-accent-aka font-serif text-sm bg-surface/80 group-hover:bg-accent-aka group-hover:text-white transition-colors duration-500">
-              湯
-            </span>
-            <div className="flex flex-col">
-              <span className="font-serif text-lg tracking-[0.25em] leading-none text-text">
-                {brand.name}
-              </span>
-              <span className="text-[8px] tracking-[0.4em] text-text-muted mt-0.5 font-light">
-                京都・京都市
-              </span>
+            <div className="hidden md:flex items-center justify-between px-5 md:px-6 py-2 border-b border-border/45 bg-white/16 text-[10px] tracking-[0.18em] font-semibold uppercase text-text-light">
+              <div className="flex items-center gap-2">
+                <Sparkles size={12} className="text-accent" strokeWidth={1.6} />
+                Kyoto-made rituals
+              </div>
+              <div className="flex items-center gap-3">
+                <span>2-4 day dispatch</span>
+                <span className="w-1 h-1 rounded-full bg-border-strong" />
+                <span>Sensitive-skin conscious</span>
+                <span className="w-1 h-1 rounded-full bg-border-strong" />
+                <span>Ingredient transparency</span>
+              </div>
             </div>
-          </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8 xl:gap-10">
-            {navLinks.map((link) => (
-              <AnimatedLink
-                key={link.href}
-                href={link.href}
-                active={pathname === link.href}
-                variant="nav"
-              >
-                {link.label}
-              </AnimatedLink>
-            ))}
-          </nav>
+            <div className="flex items-center justify-between h-16 md:h-[4.25rem] px-3 md:px-4">
+              <Link href="/" className="group flex items-center gap-3 shrink-0">
+                <span className="flex items-center justify-center w-10 h-10 rounded-full border border-white/30 bg-linear-to-br from-white/95 to-white/70 text-primary font-serif text-xs tracking-[0.18em] shadow-[0_10px_24px_rgba(15,23,42,0.08)] group-hover:from-primary group-hover:to-[#2e6bff] group-hover:text-white transition-all duration-500">
+                  YB
+                </span>
+                <div className="flex flex-col">
+                  <span className="font-serif text-base md:text-lg tracking-[0.12em] leading-none text-text">
+                    {brand.name}
+                  </span>
+                  <span className="text-[10px] tracking-[0.16em] text-text-light mt-1 font-medium uppercase">
+                    Premium skincare studio
+                  </span>
+                </div>
+              </Link>
 
-          {/* Right side actions */}
-          <div className="flex items-center gap-4">
-            {/* CTA Button - Desktop */}
-            <Link
-              href="/products"
-              className="hidden md:inline-flex items-center gap-2 btn-primary !py-2.5 !px-6 !text-[11px] shadow-[0_8px_24px_rgba(139,58,58,0.18)] hover:shadow-[0_12px_32px_rgba(139,58,58,0.28)]"
-            >
-              商品を見る
-              <ArrowUpRight size={13} strokeWidth={1.5} />
-            </Link>
-
-            {/* Mobile menu button */}
-            <button
-              type="button"
-              aria-label={open ? "メニューを閉じる" : "メニューを開く"}
-              aria-expanded={open}
-              className="lg:hidden w-11 h-11 flex items-center justify-center border border-border text-text bg-surface/80 hover:bg-surface transition-colors"
-              onClick={() => setOpen(!open)}
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                {open ? (
-                  <motion.span
-                    key="close"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
+              <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
+                {navLinks.map((link) => (
+                  <AnimatedLink
+                    key={link.href}
+                    href={link.href}
+                    active={pathname === link.href}
+                    variant="nav"
                   >
-                    <X size={18} strokeWidth={1.5} />
-                  </motion.span>
-                ) : (
-                  <motion.span
-                    key="menu"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                  >
-                    <Menu size={18} strokeWidth={1.5} />
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </button>
+                    {link.label}
+                  </AnimatedLink>
+                ))}
+              </nav>
+
+              <div className="flex items-center gap-2 md:gap-3 pr-0 md:pr-1">
+                <Link
+                  href="/products"
+                  className="hidden md:inline-flex items-center gap-2 btn-primary py-2.5! px-5! text-[10px]!"
+                >
+                  View products
+                  <ArrowUpRight size={13} strokeWidth={1.5} />
+                </Link>
+
+                <button
+                  type="button"
+                  aria-label={open ? "メニューを閉じる" : "メニューを開く"}
+                  aria-expanded={open}
+                  className="lg:hidden w-10 h-10 rounded-full flex items-center justify-center border border-border text-text bg-white/90 hover:bg-white transition-colors shadow-[0_8px_20px_rgba(15,23,42,0.07)]"
+                  onClick={() => setOpen(!open)}
+                >
+                  <AnimatePresence mode="wait" initial={false}>
+                    {open ? (
+                      <motion.span
+                        key="close"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                      >
+                        <X size={18} strokeWidth={1.5} />
+                      </motion.span>
+                    ) : (
+                      <motion.span
+                        key="menu"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                      >
+                        <Menu size={18} strokeWidth={1.5} />
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </header>
 
-      {/* Mobile Full-screen Menu */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 lg:hidden bg-surface/99 backdrop-blur-xl"
+            className="fixed inset-0 z-40 lg:hidden bg-[rgba(7,17,29,0.82)] backdrop-blur-2xl"
           >
-            {/* Decorative background pattern */}
-            <div className="absolute top-0 right-0 w-64 h-64 text-accent-warm/5 pointer-events-none">
-              <SeigaihaPattern className="w-full h-full" />
-            </div>
-
             <motion.nav
               variants={menuVariants}
               initial="hidden"
               animate="visible"
               exit="hidden"
-              className="h-full flex flex-col justify-center section-container pt-24 pb-12"
+              className="h-full flex flex-col justify-center section-container pt-24 pb-10"
             >
-              {/* Menu header */}
-              <div className="mb-12">
-                <p className="eyebrow mb-2">NAVIGATION</p>
-                <div className="h-px w-16 bg-accent-aka/40" />
+              <div className="mb-10">
+                <p className="eyebrow text-white/75! mb-2">Menu</p>
+                <div className="h-px w-16 bg-white/28" />
               </div>
 
-              {/* Menu links */}
-              <ul className="space-y-2">
+              <ul className="space-y-1">
                 {navLinks.map((link) => (
                   <motion.li key={link.href} variants={itemVariants}>
                     <Link
                       href={link.href}
-                      className={`block font-serif text-3xl md:text-4xl py-5 px-2 border-l-2 transition-all duration-300 tracking-wide ${
+                      onClick={() => setOpen(false)}
+                      className={`block font-serif text-3xl md:text-4xl py-4 px-3 rounded-2xl border transition-all duration-300 tracking-wide ${
                         pathname === link.href
-                          ? "border-accent-aka text-accent-aka pl-4"
-                          : "border-transparent text-text hover:border-accent-aka/40 hover:text-accent-aka hover:pl-4"
+                          ? "border-white/24 bg-white/10 text-white"
+                          : "border-transparent text-white/86 hover:border-white/20 hover:bg-white/6"
                       }`}
                     >
                       {link.label}
@@ -186,24 +184,23 @@ export default function Navbar() {
                 ))}
               </ul>
 
-              {/* Menu footer */}
               <motion.div variants={itemVariants} className="mt-16">
-                <Link 
-                  href="/products" 
-                  className="btn-primary w-full justify-center shadow-lg"
+                <Link
+                  href="/products"
+                  className="btn-primary w-full justify-center"
                   onClick={() => setOpen(false)}
                 >
-                  商品を見る
+                  View products
                 </Link>
-                
-                <div className="mt-10 flex items-center gap-4 text-text-muted/60">
-                  <div className="h-px flex-1 bg-border" />
-                  <span className="text-[10px] tracking-[0.3em]">YŪBI KYOTO</span>
-                  <div className="h-px flex-1 bg-border" />
+
+                <div className="mt-8 flex items-center gap-4 text-white/55">
+                  <div className="h-px flex-1 bg-white/20" />
+                  <span className="text-[10px] tracking-[0.18em]">Yūbi Kyoto</span>
+                  <div className="h-px flex-1 bg-white/20" />
                 </div>
 
-                <p className="mt-8 vertical-jp h-32 text-sm text-text-muted/50 font-serif tracking-[0.3em] text-center mx-auto">
-                  {brand.tagline}
+                <p className="mt-6 text-sm text-white/72 leading-relaxed text-center max-w-sm mx-auto">
+                  Kyoto’s quiet discipline, translated into a daily ritual.
                 </p>
               </motion.div>
             </motion.nav>
