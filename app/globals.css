@@ -1,26 +1,374 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400;500;600;700&family=Noto+Serif+JP:wght@200;300;400;500;600;700&display=swap");
+
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* 和モダン — Japanese luxury palette */
+@theme {
+  --color-background: #f8f4ed;
+  --color-surface: #fffefc;
+  --color-surface-beige: #e8e0d4;
+  --color-surface-warm: #ede5d9;
+  --color-surface-matcha: #e6ece2;
+  --color-accent-warm: #b8956a;
+  --color-accent-sakura: #d4a5a5;
+  --color-accent-rose: #c98989;
+  --color-accent-aka: #8b3a3a;
+  --color-accent-beni: #c41e3a;
+  --color-accent-matcha: #4a5d3f;
+  --color-accent-sumi: #1a1918;
+  --color-text: #2a2826;
+  --color-text-muted: #6b6358;
+  --color-text-light: #8a8178;
+  --color-border: #d9d0c4;
+  --color-border-dark: #3d3832;
+  --color-border-light: #e8e0d6;
+
+  --font-sans: "Noto Sans JP", sans-serif;
+  --font-serif: "Noto Serif JP", serif;
+
+  --radius-soft: 2px;
+  --radius-card: 1px;
+  --radius-frame: 0px;
+
+  --shadow-washi: 0 1px 0 rgba(42, 40, 38, 0.03), 0 8px 32px rgba(42, 40, 38, 0.04);
+  --shadow-lift: 0 16px 48px rgba(42, 40, 38, 0.08);
+  --shadow-premium: 0 32px 80px rgba(42, 40, 38, 0.12);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface) 40%, transparent) 0%,
+      transparent 30%
+    ),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c4a882' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-accent-sakura) 25%, transparent);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.vertical-jp {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.section-container {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .section-container {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+}
+
+.hero-shell {
+  max-width: 76rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .hero-shell {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-shell {
+    padding-left: 2.25rem;
+    padding-right: 2.25rem;
+  }
+}
+
+.section-padding {
+  padding-top: 5.5rem;
+  padding-bottom: 5.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 7.5rem;
+    padding-bottom: 7.5rem;
+  }
+}
+
+/* 見出し — editorial Japanese */
+.eyebrow {
+  font-size: 0.625rem;
+  letter-spacing: 0.4em;
+  color: var(--color-accent-aka);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.eyebrow-jp {
+  font-size: 0.6875rem;
+  letter-spacing: 0.35em;
+  color: var(--color-accent-matcha);
+  font-weight: 300;
+}
+
+.heading-display {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+}
+
+.heading-section {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+/* 枠 — shoji-inspired frame */
+.frame-shoji {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-washi);
+}
+
+.frame-shoji::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--color-border);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.frame-shoji::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid color-mix(in srgb, var(--color-accent-warm) 35%, transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.card-washi {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-washi);
+  transition:
+    box-shadow 0.45s ease,
+    border-color 0.35s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-washi:hover {
+  border-color: color-mix(in srgb, var(--color-accent-warm) 55%, transparent);
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-3px);
+}
+
+/* 印 — seal stamp button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  background-color: var(--color-accent-aka);
+  color: #fffdf9;
+  padding: 0.875rem 2rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  border: none;
+  transition:
+    background-color 0.35s ease,
+    transform 0.35s ease;
+}
+
+.btn-primary:hover {
+  background-color: color-mix(in srgb, var(--color-accent-aka) 88%, black);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  background: transparent;
+  color: var(--color-text);
+  padding: 0.875rem 2rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  border: 1px solid var(--color-border-dark);
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-accent-sumi);
+  color: #fffdf9;
+  border-color: var(--color-accent-sumi);
+}
+
+.section-matcha {
+  background: linear-gradient(
+    165deg,
+    var(--color-surface-matcha) 0%,
+    color-mix(in srgb, var(--color-accent-matcha) 12%, var(--color-background)) 100%
+  );
+  border-top: 1px solid color-mix(in srgb, var(--color-accent-matcha) 20%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-accent-matcha) 20%, transparent);
+}
+
+.section-sumi {
+  background: var(--color-accent-sumi);
+  color: #f5f0e8;
+}
+
+.section-sakura {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-accent-sakura) 8%, var(--color-surface-warm)) 0%,
+    var(--color-surface-warm) 100%
+  );
+}
+
+/* 麻の葉 — Asanoha (hemp leaf) pattern for premium sections */
+.pattern-asanoha {
+  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b8956a' fill-opacity='0.03'%3E%3Cpath d='M60 0L90 30L60 60L30 30L60 0ZM60 60L90 90L60 120L30 90L60 60ZM0 60L30 30L60 60L30 90L0 60ZM60 60L90 60L90 120L60 120L60 60Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* 亀甲 — Kikkou (tortoiseshell) subtle pattern */
+.pattern-kikkou {
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='70' viewBox='0 0 80 70' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b8956a' fill-opacity='0.025'%3E%3Cpath d='M40 0L70 17.5V52.5L40 70L10 52.5V17.5L40 0Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* 縦書き装飾 — Vertical text decoration */
+.vertical-decorative {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 0.3em;
+  font-weight: 200;
+}
+
+/* Premium hover effects */
+.hover-premium {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-premium:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-premium);
+}
+
+/* 和紙テクスチャ — Washi paper texture overlay */
+.texture-washi {
+  position: relative;
+}
+
+.texture-washi::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 箔押し効果 — Foil stamp effect for premium text */
+.text-foil {
+  background: linear-gradient(135deg, var(--color-accent-warm) 0%, #d4a574 50%, var(--color-accent-warm) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ぼかし効果 — Soft blur for overlays */
+.blur-washi {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* 細い罫線 — Hairline borders */
+.border-hairline {
+  border-width: 0.5px;
+}
+
+/* Premium section dividers */
+.divider-premium {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border), var(--color-accent-warm), var(--color-border), transparent);
+}
+
+/* 行間 — Enhanced line height for Japanese text */
+.leading-ja {
+  line-height: 2.1;
+}
+
+/* 文字間 — Letter spacing for Japanese */
+.tracking-ja {
+  letter-spacing: 0.1em;
+}
+
+/* Premium animation utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slowPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-slow-pulse {
+  animation: slowPulse 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
